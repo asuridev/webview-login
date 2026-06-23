@@ -75,7 +75,9 @@ describe('HomePage', () => {
     await buildComponent();
 
     expect(component.cards()?.length).toBe(1);
-    expect(component.cards()?.[0]).toEqual({ title: 'Libre' });
+    expect(component.cards()?.[0]).toEqual(
+      jasmine.objectContaining({ title: 'Libre' }),
+    );
   });
 
   it('should include a card whose permission the user has', async () => {

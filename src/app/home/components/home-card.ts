@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, input } from '@angular/core';
 import { PARTNER_ID_MAP } from 'src/app/config/partnerIdMap';
 import { ConfigurationService } from 'src/app/services/configuration.service';
-import { RedirectService } from module "c:/bnp/ap12218-webview-login-app-repo/src/environments/environment"
+import { RedirectService } from 'src/app/services/redirect.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
