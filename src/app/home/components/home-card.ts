@@ -95,7 +95,7 @@ export class HomeCardComponent {
         correlationId: this.configurationService.correlationId(),
         partnerId: PARTNER_ID_MAP[this.configurationService.partnerId() ?? ""],
         saleInformation:
-          '{"personalInformation":{"documentType":"CC","documentNumber":270000190,"surname":"Barraza","seco...
+          '{"personalInformation":{"documentType":"CC","documentNumber":270000190,"surname":"Barraza","secondSurname":""}}',
       })
       .subscribe();
     this.configurationService.SetProductType(this.productType() ?? 0);
