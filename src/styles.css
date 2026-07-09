@@ -1,0 +1,6 @@
+/* Poppins — tipografía del diseño Figma (BO Experiencia Modular). El tema del
+   partner puede sobrescribir la fuente vía `typography.fontUrlWoff2`; este import
+   es el fallback por defecto para dev. Con fallback a `sans-serif` si no carga.
+   Debe ir antes de otras reglas (los `@import` deben preceder al resto). */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import "tailwindcss";
