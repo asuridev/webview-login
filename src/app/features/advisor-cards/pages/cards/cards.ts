@@ -151,7 +151,10 @@ export class Cards {
 
   /** Logout RP-initiated del reino: descarta la sesión en memoria y redirige al `end_session` del IdP, que devuelve a webview-login (CLAUDE.md §5). */
   logout(): void {
+    // Capturar el id_token ANTES de resetear (reset() lo limpia): es el
+    // id_token_hint que Keycloak < 19 exige para redirigir tras el logout.
+    const idTokenHint = this.sessionStore.idToken() ?? undefined;
     this.sessionStore.reset();
-    window.location.href = this.oidcClient.buildEndSessionUrl();
+    window.location.href = this.oidcClient.buildEndSessionUrl(idTokenHint);
   }
 }

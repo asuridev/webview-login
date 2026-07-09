@@ -37,7 +37,9 @@ export class Callback implements OnInit {
       next: (tokens) => {
         clearPkceTransaction();
         const claims = decodeAuthClaims(tokens.id_token);
-        this.sessionStore.setAuthenticated(claims);
+        // Se retiene el id_token crudo (en memoria) para usarlo como
+        // id_token_hint del logout — Keycloak < 19 lo exige.
+        this.sessionStore.setAuthenticated(claims, tokens.id_token);
         this.roleRedirect.redirect(claims);
       },
       error: () => this.failAndReturn(),

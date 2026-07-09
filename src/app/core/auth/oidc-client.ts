@@ -39,11 +39,20 @@ export class OidcClient {
     return url.toString();
   }
 
-  /** Construye la URL de fin de sesión del reino (logout RP-initiated). Devuelve al usuario a webview-login vía `post_logout_redirect_uri` (CLAUDE.md §5). */
-  buildEndSessionUrl(): string {
+  /**
+   * Construye la URL de fin de sesión del reino (logout RP-initiated). Devuelve
+   * al usuario a webview-login vía `post_logout_redirect_uri` (CLAUDE.md §5).
+   * Incluye `id_token_hint` (requerido por Keycloak < 19 para redirigir tras el
+   * logout) además de `client_id` (aceptado por Keycloak 19+): así funciona de
+   * forma uniforme en ambas versiones.
+   */
+  buildEndSessionUrl(idTokenHint?: string): string {
     const url = new URL(environment.idpEndSessionEndpoint);
     url.searchParams.set('client_id', environment.oidcClientId);
     url.searchParams.set('post_logout_redirect_uri', window.location.origin);
+    if (idTokenHint) {
+      url.searchParams.set('id_token_hint', idTokenHint);
+    }
     return url.toString();
   }
 
